@@ -28,15 +28,18 @@ height=1024
 pic = cv2.resize(im_bw, (width, height))
 #cv2.imwrite('sleeve.jpg', pic)
 
-dA=detect(pic)
-print(dA)
+lowestpoint,dA,dB=detect(pic)
+#print(dA*dB)
+#print(dA)
+#print(dB)
+area=dA*dB
 
-if(dA>50 and dA<500):
+if(lowestpoint>200 and lowestpoint<600 and area>10000):
     print('half-sleeves')
-elif(dA>=500):
+elif(lowestpoint>=600):
     print('full-sleeves')
 else:
-    print('no-sleeves')
+    print('sleeveless')
 
 
 #cv2.imwrite('Video.jpg', image)

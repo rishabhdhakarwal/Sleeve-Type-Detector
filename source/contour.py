@@ -14,12 +14,12 @@ def detect(image):
     #cv2.imwrite('edged.jpg',edged)
     cnts = cv2.findContours(edged.copy(), cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
     cnts = cnts[0]
-    print(len(cnts))
+    #print(len(cnts))
     cnts = sorted(cnts, key=cv2.contourArea)
 
     epsilon = 0.0000000000000000000001*cv2.arcLength(cnts[-1],True)
     approx =  cv2.approxPolyDP(cnts[-1],epsilon,True)
-
+    cv2.drawContours(image, [approx], 0, (0,255,0),3)
 
     box=cv2.minAreaRect(cnts[-1])
     box=cv2.cv.BoxPoints(approx) if imutils.is_cv2() else cv2.boxPoints(box)
@@ -57,6 +57,10 @@ def detect(image):
     #cv2.imwrite('box.jpg',image)
     #print(dA)
     #print(dB)
-
-    return dA
+    (tl, tr, br, bl) = box
+    '''print(tl)
+                print(tr)
+                print(br)
+                print(bl)'''
+    return br[1] ,dA, dB
 

@@ -86,6 +86,7 @@ class userPreprocess:
 		for j in xrange(0, grayUserImg.shape[1]):
 			if grayUserImg[i][j] != grayUserImg[0][0]:
 				self.leftSegLine = j
+
 				break
 
 		for j in xrange(grayUserImg.shape[1]-1,-1,-1):
@@ -173,7 +174,7 @@ class userPreprocess:
 	def armSegment(self,img,leftOrRight):
 		if leftOrRight == 'left':
 			segImg = img.copy()
-			segImg[:,self.leftSegLine+1:] = 0
+			segImg[:,self.leftSegLine:] = 0
 			return self.armRemTurds(segImg,leftOrRight)
 		else:
 			segImg = img.copy()
