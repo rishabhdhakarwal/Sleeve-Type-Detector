@@ -2,7 +2,7 @@
 
 # Running the repo:
 ```bash
-python sleeves.py cloth_name.jpg
+python2 sleeves.py cloth_name.jpg
 ```
 
 # Examples:
